@@ -19,10 +19,8 @@ export default function TaskForm() {
     const { user } = useStateContext();
     const { push } = useRouter();
 
-    // Redirect to home if user is logged in
-    if (user) {
-        push("/");
-    }
+   
+   
 
     // Form submission handler
     const onSubmit = async (data: TaskFormData) => {
@@ -30,12 +28,8 @@ export default function TaskForm() {
             setError('');
             setLoading(true);
             // Update this to your task creation API endpoint
-            const response = await axios.post("/api/tasks/create", data);
-            if (response.data.error) {
-                setError(response.data.error);
-                setLoading(false);
-                return;
-            }
+            
+            console.log('data');
             window.location.replace("/tasks"); // Redirect after successful task creation
         } catch (error) {
             setLoading(false);
