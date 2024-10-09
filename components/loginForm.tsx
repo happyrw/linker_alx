@@ -36,7 +36,7 @@ export default function LoginForm() {
             window.location.replace("/");
         } catch (error) {
             setLoading(false);
-            setError("Something went wrong while registering");
+            setError("Something went wrong while login");
             console.error(error);
         }
     };
