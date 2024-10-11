@@ -26,18 +26,19 @@ export default function Home() {
         </button>
         <div className="flex item-center justify-center p-2 md:p-10 gap-[30px] flex-wrap">
 
-          {tasks.map((task) =>  (
+          {tasks.map((task) => (
             <TaskComponent
-            id={task.id}
-            index={index}
-            setIndex={setIndex}
-            title={task.title}
-            description={task.description}
-            imageUrl={task.imageUrl}
-            assignee={task.assignee}
-            timeAgo={task.timeAgo}
-            setShowActionButton={setShowActionButton}
-            showActionButton={showActionButton}
+              key={task.id}
+              id={task.id}
+              index={index}
+              setIndex={setIndex}
+              title={task.title}
+              description={task.description}
+              imageUrl={task.imageUrl}
+              assignee={task.assignee}
+              timeAgo={task.timeAgo}
+              setShowActionButton={setShowActionButton}
+              showActionButton={showActionButton}
             />
           ))}
 
