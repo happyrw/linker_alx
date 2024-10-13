@@ -8,12 +8,18 @@ import Cookies from "js-cookie";
 type StateContextType = {
     user: User | null;
     setUser: Dispatch<SetStateAction<User | null>>;
+    addTask: boolean;
+    setAddTask: Dispatch<SetStateAction<boolean>>,
+    expandedOrderId: number | null,
+    setExpandedOrderId: Dispatch<SetStateAction<number | null>>
 };
 
 const context = createContext<StateContextType | undefined>(undefined);
 
 export const StateContext = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
+    const [addTask, setAddTask] = useState(false);
+    const [expandedOrderId, setExpandedOrderId] = useState<number | null>(0);
 
     useEffect(() => {
         const token = Cookies.get("clientToken");
@@ -23,7 +29,6 @@ export const StateContext = ({ children }: { children: React.ReactNode }) => {
                 if (decoded) {
                     setUser(decoded as any);
                 }
-                console.log(user, token, decoded)
             } catch (error) {
                 console.error("Failed to decode token:", error);
             }
@@ -34,7 +39,11 @@ export const StateContext = ({ children }: { children: React.ReactNode }) => {
         <context.Provider
             value={{
                 user,
-                setUser
+                setUser,
+                addTask,
+                setAddTask,
+                expandedOrderId,
+                setExpandedOrderId
             }}
         >
             {children}
